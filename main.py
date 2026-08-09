@@ -23,5 +23,11 @@ print('Digite no campo abaixo o tipo de tecido e a quantidade')
 print('Digite 3 - Para sair do programa')
 
 cadastro_tecido()
+resumo = {}
 for item in cadastro:
-    print(f'Tecido: {item['tecidos']} , Quantidades: {item['qtd']}')
+    nome = item['tecidos']
+    quantidade = item['qtd']
+
+    resumo[nome] = resumo.get(nome, 0) + quantidade
+for tecido, total in resumo.items():
+    print(f'Tecido: {tecido} , Quantidades total de sacos: {total}')
