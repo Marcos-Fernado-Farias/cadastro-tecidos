@@ -1,3 +1,5 @@
+PESO_SACO_KG = 20
+
 cadastro = []
 
 def cadastro_tecido():
@@ -29,5 +31,7 @@ for item in cadastro:
     quantidade = item['qtd']
 
     resumo[nome] = resumo.get(nome, 0) + quantidade
+
 for tecido, total in resumo.items():
-    print(f'Tecido: {tecido} , Quantidades total de sacos: {total}')
+    peso = total * PESO_SACO_KG
+    print(f'Tecido: {tecido} , Quantidades total de sacos: {total}, Peso total: {peso}kg ')
