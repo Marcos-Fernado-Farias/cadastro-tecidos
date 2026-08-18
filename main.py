@@ -1,4 +1,15 @@
+import sqlite3
 PESO_SACO_KG = 20
+conexao = sqlite3.connect('dados.db')
+cursor = conexao.cursor()
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS coletas(
+        id INTEGER PRIMARY KEY,
+        tecido TEXT,
+        qtd_sacos INTEGER
+    )
+""")
+conexao.commit()
 
 cadastro = []
 
@@ -17,6 +28,10 @@ def cadastro_tecido():
 }
 
         cadastro.append(lista.copy())
+
+        cursor.execute("INSERT INTO coletas (tecido, qtd_sacos) VALUES (?,?)",
+        (tecidos,qtd))
+        conexao.commit()
 
         print('Tecido cadastrado com sucesso!')
 
