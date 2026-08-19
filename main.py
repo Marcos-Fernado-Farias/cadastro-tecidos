@@ -47,6 +47,12 @@ for item in cadastro:
 
     resumo[nome] = resumo.get(nome, 0) + quantidade
 
+cursor.execute('SELECT * FROM coletas')
+todos = cursor.fetchall()
+print('--- Dados salvos no banco ---')
+for linha in todos:
+    print(linha)
+
 for tecido, total in resumo.items():
     peso = total * PESO_SACO_KG
     print(f'Tecido: {tecido} , Quantidades total de sacos: {total}, Peso total: {peso}kg ')
