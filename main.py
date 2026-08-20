@@ -1,5 +1,15 @@
 import sqlite3
+
+
 PESO_SACO_KG = 20
+
+TIPOS_TECIDO = {
+    '1': 'jeans',
+    '2' : 'pt',
+
+}
+
+
 conexao = sqlite3.connect('dados.db')
 cursor = conexao.cursor()
 cursor.execute("""
@@ -15,17 +25,25 @@ cadastro = []
 
 def cadastro_tecido():
     while True:
-        tecidos = input('Digite o tipo de tecido: ')
-        if tecidos == '3':
+        print('\n1 - Jeans')
+        print('2 - PT')
+        print('0 - Sair')
+
+        opcao = input('Escolha o tipo de tecido: ')
+
+        if opcao == '0':
             print('Encerrando o programa...')
             break
+        if opcao not in TIPOS_TECIDO:
+            print('Inválida, tente novamente.')
+
+        tecidos = TIPOS_TECIDO[opcao]
+
         
         qtd = int(input('Digite a quantidade de saco coletados: '))
 
 
-        lista = {'tecidos': tecidos, 'qtd': qtd
-         
-}
+        lista = {'tecidos': tecidos, 'qtd': qtd}
 
         cadastro.append(lista.copy())
 
@@ -37,7 +55,6 @@ def cadastro_tecido():
 
 #Programa principal
 print('Digite no campo abaixo o tipo de tecido e a quantidade')
-print('Digite 3 - Para sair do programa')
 
 cadastro_tecido()
 resumo = {}
